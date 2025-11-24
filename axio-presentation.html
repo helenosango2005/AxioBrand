@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXIO Brand - Design On Point</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0A1E2B;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 2rem;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        /* Slide 1 - Intro */
+        .slide-1 {
+            background: linear-gradient(135deg, #0A1E2B 0%, #134455 100%);
+        }
+
+        .logo-intro {
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            color: #00D9FF;
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .tagline {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: #00D9FF;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 0.9rem;
+            color: #00D9FF;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        /* Slide 2 - O que é */
+        .slide-2 {
+            background: #0A1E2B;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #00D9FF;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #00D9FF;
+        }
+
+        .manifesto {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .manifesto strong {
+            color: #00D9FF;
+            font-weight: 600;
+        }
+
+        /* Slide 3 - Pilares */
+        .slide-3 {
+            background: linear-gradient(135deg, #134455 0%, #0A1E2B 100%);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        .pillar-card {
+            background: rgba(0, 217, 255, 0.05);
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-10px);
+            border-color: #00D9FF;
+            background: rgba(0, 217, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .pillar-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00D9FF;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .pillar-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #00D9FF;
+        }
+
+        .pillar-desc {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Slide 4 - Serviços */
+        .slide-4 {
+            background: #0A1E2B;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            border-color: #00D9FF;
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00D9FF;
+            margin-bottom: 1rem;
+        }
+
+        .service-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Slide 5 - Benefícios */
+        .slide-5 {
+            background: linear-gradient(135deg, #0A1E2B 0%, #134455 100%);
+        }
+
+        .benefits-list {
+            max-width: 900px;
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 217, 255, 0.05);
+            border-left: 4px solid #00D9FF;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.5rem;
+            color: #00D9FF;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-content p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Slide 6 - CTA Final */
+        .slide-6 {
+            background: linear-gradient(135deg, #134455 0%, #00D9FF 100%);
+        }
+
+        .cta-content {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: #0A1E2B;
+        }
+
+        .cta-text {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 3rem;
+            color: rgba(10, 30, 43, 0.9);
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background: #0A1E2B;
+            color: #00D9FF;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 3px solid #0A1E2B;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #0A1E2B;
+            transform: scale(1.1);
+            box-shadow: 0 10px 40px rgba(10, 30, 43, 0.3);
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem 1rem;
+            }
+
+            .pillars-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Intro -->
+        <section class="slide slide-1">
+            <div class="logo-intro">AXIO</div>
+            <div class="tagline">DESIGN ON POINT</div>
+            <div class="scroll-indicator">↓ Role para descobrir</div>
+        </section>
+
+        <!-- Slide 2: O que é -->
+        <section class="slide slide-2">
+            <div class="content-wrapper">
+                <h2 class="section-title">O que é a AXIO?</h2>
+                <p class="manifesto">
+                    Em um mercado visualmente caótico, o destaque não vem de quem grita mais alto, mas de <strong>quem é mais preciso</strong>.<br><br>
+                    
+                    A AXIO Brand existe para <strong>eliminar o ruído</strong>. Nós não acreditamos em design vazio. Acreditamos no <strong>Design On Point</strong>: aquele que resolve, que posiciona e que converte.<br><br>
+                    
+                    Somos o <strong>eixo</strong> que sustenta a estratégia. Somos a <strong>ponta</strong> que define a execução. Unimos a lógica estratégica com a estética impecável.<br><br>
+                    
+                    Para marcas que buscam <strong>direção</strong> e não apenas decoração.
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 3: Pilares -->
+        <section class="slide slide-3">
+            <div class="content-wrapper">
+                <h2 class="section-title">Nossos 3 Pilares</h2>
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-number">01</div>
+                        <h3 class="pillar-title">Essencialismo</h3>
+                        <p class="pillar-desc">Less but Better. Se não tem função, não entra no layout. Eliminamos o desnecessário para destacar o essencial.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-number">02</div>
+                        <h3 class="pillar-title">Fundamento</h3>
+                        <p class="pillar-desc">Strategy First. Antes de abrir o software de design, abrimos a mente. Todo traço tem um porquê estratégico.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-number">03</div>
+                        <h3 class="pillar-title">Precisão</h3>
+                        <p class="pillar-desc">On Point. Respeito absoluto aos prazos, ao alinhamento de pixels e à expectativa de negócio do cliente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Serviços -->
+        <section class="slide slide-4">
+            <div class="content-wrapper">
+                <h2 class="section-title">Como Podemos Ajudar</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3 class="service-name">AXIO ID</h3>
+                        <p class="service-desc">Desenvolvimento completo de Identidade Visual: logotipo, paleta de cores, tipografia e manual de marca.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3 class="service-name">AXIO Motion/Social</h3>
+                        <p class="service-desc">Gestão visual estratégica para redes sociais e design digital que engaja e converte.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💡</div>
+                        <h3 class="service-name">Brand Strategy</h3>
+                        <p class="service-desc">Consultoria especializada em naming, posicionamento de marca e definição de arquétipos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Benefícios -->
+        <section class="slide slide-5">
+            <div class="content-wrapper">
+                <h2 class="section-title">Por Que Escolher a AXIO?</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">⚡</div>
+                        <div class="benefit-content">
+                            <h3>Transformação Real</h3>
+                            <p>Não criamos apenas logos bonitos. Desenvolvemos sistemas visuais estratégicos que transformam empresas comuns em marcas memoráveis e funcionais.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-content">
+                            <h3>Foco em Resultados</h3>
+                            <p>Cada decisão de design tem um propósito estratégico alinhado aos seus objetivos de negócio. Design que resolve, posiciona e converte.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🔧</div>
+                        <div class="benefit-content">
+                            <h3>Precisão Absoluta</h3>
+                            <p>Entregamos projetos no prazo, com atenção aos mínimos detalhes e total alinhamento com suas expectativas de negócio.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚀</div>
+                        <div class="benefit-content">
+                            <h3>Posicionamento de Mercado</h3>
+                            <p>Construímos a estrutura inquestionável que sua marca precisa para se destacar em um mercado competitivo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: CTA -->
+        <section class="slide slide-6">
+            <div class="cta-content">
+                <h2 class="cta-title">Pronto para ser On Point?</h2>
+                <p class="cta-text">Vamos transformar a complexidade do seu negócio em uma identidade visual precisa e memorável.</p>
+                <a href="#contato" class="cta-button">Iniciar Projeto</a>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
